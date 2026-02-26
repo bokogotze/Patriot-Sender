@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ALL YOUR EXISTING CSS STAYS THE SAME */
+        /* ALL YOUR EXISTING CSS */
         * {
             margin: 0;
             padding: 0;
@@ -50,9 +50,6 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: 3px solid #c9a03d;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
         
         .header-left {
@@ -118,12 +115,6 @@
             font-weight: 600;
         }
         
-        .card-header span {
-            color: #c9a03d;
-            font-size: 12px;
-            margin-left: auto;
-        }
-        
         .input-group {
             margin-bottom: 16px;
         }
@@ -145,12 +136,6 @@
             border-radius: 12px;
             color: white;
             font-size: 15px;
-        }
-        
-        .input-group input:focus,
-        .input-group textarea:focus {
-            outline: none;
-            border-color: #c9a03d;
         }
         
         .input-group input[readonly] {
@@ -245,18 +230,13 @@
             color: #0a0c0f;
         }
         
-        .btn-start:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
         .btn-stop {
             background: #3a2c2c;
             color: #ff6b6b;
             border: 1px solid #ff6b6b;
         }
         
-        .btn-stop:disabled {
+        .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
@@ -363,12 +343,6 @@
             font-weight: 700;
             cursor: pointer;
         }
-        
-        @media (max-width: 480px) {
-            .button-group {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
@@ -378,11 +352,10 @@
                 <i class="fas fa-paper-plane"></i>
                 <h1>PATRIOT <span>SEND</span></h1>
             </div>
-            <div class="badge">v3.0</div>
+            <div class="badge">FINAL</div>
         </div>
         
         <div class="app-content">
-            <!-- COMPOSE CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-envelope"></i>
@@ -400,7 +373,6 @@
                 </div>
             </div>
             
-            <!-- RECIPIENTS CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-users"></i>
@@ -419,7 +391,6 @@
                 </div>
             </div>
             
-            <!-- STATS CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-chart-line"></i>
@@ -452,7 +423,6 @@
                 </div>
             </div>
             
-            <!-- CONTROL CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-play"></i>
@@ -480,7 +450,6 @@
                 </div>
             </div>
             
-            <!-- LOG CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-terminal"></i>
@@ -494,7 +463,7 @@
         </div>
         
         <div class="app-footer">
-            PATRIOT RESEARCH • 30s INTERVAL • AUTO-STOP • MAX 45
+            PATRIOT RESEARCH • FINAL VERSION
         </div>
     </div>
     
@@ -511,22 +480,18 @@
         const TEMPLATE_ID = "template_6jxe7rp";
         const MAX_EMAILS = 45;
         
-        // YOUR BEAUTIFUL HTML TEMPLATE - THIS IS WHAT WILL BE SENT
+        // YOUR BEAUTIFUL HTML TEMPLATE
         const HTML_TEMPLATE = `<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
+            margin: 0;
+            padding: 20px;
             background: #0a0c0f;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            padding: 20px;
         }
         .container {
             max-width: 560px;
@@ -575,9 +540,6 @@
             color: #8a8f99;
             font-size: 14px;
         }
-        .hero-image {
-            width: 100%;
-        }
         .hero-image img {
             width: 100%;
             height: auto;
@@ -587,119 +549,47 @@
             background: #c9a03d;
             color: #0a0c0f;
             text-align: center;
-            padding: 16px 12px;
+            padding: 16px;
             font-weight: 800;
             font-size: 22px;
             border-bottom: 2px solid #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .sale-banner span {
-            background: #0a0c0f;
-            color: #c9a03d;
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-size: 16px;
         }
         .content {
             padding: 24px 20px;
         }
         h2 {
             font-size: 24px;
-            font-weight: 700;
             color: #ffffff;
             margin-bottom: 10px;
             border-left: 4px solid #c9a03d;
             padding-left: 12px;
         }
-        p {
-            color: #b0b5c0;
-            font-size: 15px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
         .sale-card {
             background: #1a1d24;
             border: 2px solid #c9a03d;
             border-radius: 20px;
-            padding: 24px 16px;
-            margin: 20px 0;
+            padding: 24px;
             text-align: center;
-        }
-        .sale-header {
-            color: #c9a03d;
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-        .sale-title {
-            font-size: 36px;
-            font-weight: 800;
-            color: #ffffff;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-        .sale-title span {
-            color: #c9a03d;
-        }
-        .limited-tag {
-            background: #c9a03d;
-            color: #0a0c0f;
-            display: inline-block;
-            padding: 6px 20px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 16px;
-        }
-        .stock-warning {
-            color: #ff6b6b;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            background: rgba(255,107,107,0.1);
-            padding: 10px;
-            border-radius: 8px;
         }
         .buy-button {
             display: block;
             background: #c9a03d;
             color: #0a0c0f;
             text-decoration: none;
-            padding: 20px 16px;
+            padding: 20px;
             font-size: 24px;
             font-weight: 800;
             border-radius: 60px;
-            margin: 20px 0 12px;
             text-transform: uppercase;
-        }
-        .secure-checkout {
-            color: #5a5f6b;
-            font-size: 12px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
         }
         .footer {
             background: #0a0c0f;
-            padding: 20px 16px;
+            padding: 20px;
             text-align: center;
-            border-top: 1px solid #1f2127;
         }
         .footer p {
             color: #3f434d;
             font-size: 11px;
-            margin: 0;
-        }
-        .disclaimer {
-            color: #26282f;
-            font-size: 7px;
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -711,36 +601,24 @@
                 <div class="eagle">🦅</div>
             </div>
             <h1>Private release.<span class="gold">Limited inventory.</span></h1>
-            <div class="subhead">Exclusive access • While supplies last</div>
         </div>
         
-        <div class="hero-image">
-            <img src="https://i.imgur.com/ocRXu6X.png" alt="Tesla MedBed" style="width:100%; height:auto;">
-        </div>
+        <img src="https://i.imgur.com/ocRXu6X.png" style="width:100%; display:block;">
         
-        <div class="sale-banner">
-            🔥 MAJOR SALE 🔥 <span>LIVE NOW</span>
-        </div>
+        <div class="sale-banner">🔥 MAJOR SALE 🔥 LIVE NOW</div>
         
         <div class="content">
             <h2>Tesla MedBed System</h2>
-            <p>Advanced wellness technology now available for private ownership. This is a limited-time release at special sale pricing.</p>
-            
             <div class="sale-card">
-                <div class="sale-header">⚡ LIMITED TIME ⚡</div>
-                <div class="sale-title">ON <span>SALE</span> NOW</div>
-                <div class="limited-tag">WHILE SUPPLIES LAST</div>
-                <div class="stock-warning">⚠️ ONLY 12 UNITS REMAIN AT SALE PRICE</div>
+                <div style="color:#c9a03d; margin-bottom:10px;">⚡ LIMITED TIME ⚡</div>
+                <div style="font-size:36px; color:white; margin-bottom:15px;">ON <span style="color:#c9a03d;">SALE</span> NOW</div>
+                <div style="color:#ff6b6b; margin-bottom:20px;">⚠️ ONLY 12 UNITS REMAIN</div>
                 <a href="https://teslamedbedx.com/digi-store/#aff=Doge2025" class="buy-button">GET THE SALE PRICE →</a>
-                <div class="secure-checkout">
-                    <span>🔒 SECURE</span> • <span>⚡ INSTANT</span> • <span>🔄 GUARANTEE</span>
-                </div>
             </div>
         </div>
         
         <div class="footer">
             <p>© 2026 Patriot Research • contact@patriotprogramnews.com</p>
-            <div class="disclaimer">Independent affiliate • I may receive compensation • No direct relationship with manufacturer • Not medical advice</div>
         </div>
     </div>
 </body>
@@ -758,7 +636,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateRecipientCount();
             logEvent('📱 System ready');
-            
             document.getElementById('recipients').addEventListener('input', updateRecipientCount);
         });
         
@@ -824,7 +701,7 @@
             if (!sendingActive) return;
             
             if (currentIndex >= emailList.length) {
-                logEvent('✅ Campaign complete');
+                logEvent('✅ Complete!');
                 showAlert('Campaign complete!');
                 stopSending();
                 return;
@@ -836,12 +713,11 @@
             
             logEvent(`📧 Sending to ${toEmail}...`);
             
-            // FIXED: Using html_message to match template
             const templateParams = {
                 to_email: toEmail,
                 from_email: fromEmail,
                 subject: subject,
-                html_message: HTML_TEMPLATE // ← THIS IS THE KEY FIX
+                html_message: HTML_TEMPLATE
             };
             
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
@@ -851,7 +727,7 @@
                 })
                 .catch(function(error) {
                     failedCount++;
-                    logEvent(`❌ Failed: ${toEmail}`);
+                    logEvent(`❌ Failed: ${toEmail} - ${error.text || 'Error'}`);
                 })
                 .finally(function() {
                     updateStats();
@@ -864,30 +740,16 @@
                         clearInterval(countdownInterval);
                         countdownInterval = setInterval(() => {
                             seconds--;
-                            if (seconds < 0) {
-                                clearInterval(countdownInterval);
-                                return;
-                            }
                             timerElement.textContent = seconds + 's';
                         }, 1000);
                         
-                        sendTimeout = setTimeout(() => {
-                            sendNextEmail();
-                        }, 30000);
-                    } else if (currentIndex >= emailList.length) {
-                        setTimeout(() => {
-                            if (sendingActive) {
-                                logEvent('✅ Complete');
-                                stopSending();
-                            }
-                        }, 1000);
+                        sendTimeout = setTimeout(sendNextEmail, 30000);
                     }
                 });
         }
         
         function startTimers() {
             let elapsed = 0;
-            clearInterval(timerInterval);
             timerInterval = setInterval(() => {
                 elapsed++;
                 const mins = Math.floor(elapsed / 60);
@@ -897,7 +759,6 @@
             }, 1000);
             
             let seconds = 30;
-            clearInterval(countdownInterval);
             countdownInterval = setInterval(() => {
                 seconds--;
                 if (seconds < 0) seconds = 30;
@@ -907,7 +768,7 @@
         
         function updateStats() {
             const total = emailList.length;
-            const progress = total > 0 ? ((sentCount + failedCount) / total) * 100 : 0;
+            const progress = ((sentCount + failedCount) / total) * 100;
             
             document.getElementById('statSent').textContent = sentCount;
             document.getElementById('statFailed').textContent = failedCount;
@@ -917,18 +778,12 @@
         
         function logEvent(message) {
             const logPanel = document.getElementById('logPanel');
-            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            
+            const time = new Date().toLocaleTimeString();
             const entry = document.createElement('div');
             entry.className = 'log-entry';
             entry.textContent = `[${time}] ${message}`;
-            
             logPanel.appendChild(entry);
             logPanel.scrollTop = logPanel.scrollHeight;
-            
-            while (logPanel.children.length > 20) {
-                logPanel.removeChild(logPanel.firstChild);
-            }
         }
         
         function showAlert(message) {
