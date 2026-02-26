@@ -9,7 +9,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Patriot Send">
-    <meta name="format-detection" content="telephone=no">
     
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -19,7 +18,7 @@
         })();
     </script>
     
-    <!-- Fonts & Icons -->
+    <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -27,7 +26,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         body {
@@ -35,7 +34,6 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            -webkit-text-size-adjust: 100%;
         }
         
         .app-container {
@@ -43,7 +41,6 @@
             width: 100%;
             background: #111316;
             min-height: 100vh;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
             border-left: 1px solid #2a2d34;
             border-right: 1px solid #2a2d34;
         }
@@ -79,7 +76,6 @@
         
         .header-left span {
             color: #c9a03d;
-            font-weight: 700;
         }
         
         .badge {
@@ -124,6 +120,12 @@
             font-weight: 600;
         }
         
+        .card-header span {
+            color: #c9a03d;
+            font-size: 12px;
+            margin-left: auto;
+        }
+        
         .input-group {
             margin-bottom: 16px;
         }
@@ -145,12 +147,6 @@
             border-radius: 12px;
             color: white;
             font-size: 15px;
-        }
-        
-        .input-group input:focus,
-        .input-group textarea:focus {
-            outline: none;
-            border-color: #c9a03d;
         }
         
         .input-group input[readonly] {
@@ -245,15 +241,20 @@
             color: #0a0c0f;
         }
         
+        .btn-start:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         .btn-stop {
             background: #3a2c2c;
             color: #ff6b6b;
             border: 1px solid #ff6b6b;
         }
         
-        .btn:disabled {
+        .btn-stop:disabled {
             opacity: 0.5;
-            pointer-events: none;
+            cursor: not-allowed;
         }
         
         .timer-row {
@@ -373,10 +374,11 @@
                 <i class="fas fa-paper-plane"></i>
                 <h1>PATRIOT <span>SEND</span></h1>
             </div>
-            <div class="badge">v2.0</div>
+            <div class="badge">v3.0</div>
         </div>
         
         <div class="app-content">
+            <!-- COMPOSE CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-envelope"></i>
@@ -394,6 +396,7 @@
                 </div>
             </div>
             
+            <!-- RECIPIENTS CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-users"></i>
@@ -408,10 +411,11 @@
                 
                 <div class="recipient-count">
                     <span id="totalEmails">1</span>
-                    <span>total</span>
+                    <span id="maxWarning" style="color:#ff6b6b; display:none;">MAX 45 REACHED</span>
                 </div>
             </div>
             
+            <!-- STATS CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-chart-line"></i>
@@ -444,6 +448,7 @@
                 </div>
             </div>
             
+            <!-- CONTROL CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-play"></i>
@@ -471,6 +476,7 @@
                 </div>
             </div>
             
+            <!-- LOG CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-terminal"></i>
@@ -478,15 +484,14 @@
                 </div>
                 
                 <div class="log-panel" id="logPanel">
-                    <div class="log-entry">📱 System ready</div>
-                    <div class="log-entry">📧 Service: service_edtx9of</div>
-                    <div class="log-entry">📧 Template: template_6jxe7rp</div>
+                    <div class="log-entry">📱 System ready - MAX 45 emails</div>
+                    <div class="log-entry">📧 Auto-stops after list completes</div>
                 </div>
             </div>
         </div>
         
         <div class="app-footer">
-            PATRIOT RESEARCH • 30s INTERVAL • MAX 45
+            PATRIOT RESEARCH • 30s INTERVAL • AUTO-STOP • MAX 45
         </div>
     </div>
     
@@ -501,6 +506,7 @@
     <script>
         const SERVICE_ID = "service_edtx9of";
         const TEMPLATE_ID = "template_6jxe7rp";
+        const MAX_EMAILS = 45;
         
         let sendingActive = false;
         let currentIndex = 0;
@@ -510,10 +516,12 @@
         let timerInterval = null;
         let countdownInterval = null;
         let sendTimeout = null;
+        let completed = false;
         
         document.addEventListener('DOMContentLoaded', function() {
             updateRecipientCount();
             logEvent('📱 System ready');
+            logEvent('📧 Max 45 emails • Auto-stop enabled');
             
             document.getElementById('recipients').addEventListener('input', updateRecipientCount);
         });
@@ -522,10 +530,18 @@
             const text = document.getElementById('recipients').value;
             const emails = text.split('\n')
                 .map(e => e.trim())
-                .filter(e => e.includes('@') && e.length > 0);
+                .filter(e => e.includes('@') && e.length > 0)
+                .slice(0, MAX_EMAILS); // LIMIT TO 45
             
             document.getElementById('totalEmails').textContent = emails.length;
             document.getElementById('statTotal').textContent = emails.length;
+            
+            // Show warning if over 45
+            if (emails.length >= MAX_EMAILS) {
+                document.getElementById('maxWarning').style.display = 'inline';
+            } else {
+                document.getElementById('maxWarning').style.display = 'none';
+            }
         }
         
         function startSending() {
@@ -535,24 +551,23 @@
             const subject = document.getElementById('subject').value;
             const recipientsText = document.getElementById('recipients').value;
             
+            // Parse and LIMIT to 45 emails
             emailList = recipientsText.split('\n')
                 .map(e => e.trim())
-                .filter(e => e.includes('@'));
+                .filter(e => e.includes('@') && e.length > 0)
+                .slice(0, MAX_EMAILS); // ← ENFORCE MAX 45
             
             if (emailList.length === 0) {
                 showAlert('Enter at least one recipient');
                 return;
             }
             
-            if (emailList.length > 45) {
-                showAlert('Maximum 45 recipients');
-                return;
-            }
-            
+            // Reset state
             sendingActive = true;
             currentIndex = 0;
             sentCount = 0;
             failedCount = 0;
+            completed = false;
             
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = false;
@@ -561,6 +576,7 @@
             updateStats();
             startTimers();
             
+            // Send first email
             sendNextEmail();
         }
         
@@ -582,10 +598,11 @@
         function sendNextEmail() {
             if (!sendingActive) return;
             
+            // STOP if we've sent all emails
             if (currentIndex >= emailList.length) {
-                stopSending();
-                logEvent('✅ All emails sent!');
+                logEvent('✅ Campaign complete - All emails sent');
                 showAlert('Campaign complete!');
+                stopSending(); // AUTO-STOP
                 return;
             }
             
@@ -598,25 +615,36 @@
             const templateParams = {
                 to_email: toEmail,
                 from_email: fromEmail,
-                subject: subject,
-                reply_to: fromEmail
+                subject: subject
             };
             
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
                 .then(function(response) {
                     sentCount++;
                     logEvent(`✅ Sent to ${toEmail}`);
-                    updateStats();
                 })
                 .catch(function(error) {
                     failedCount++;
-                    logEvent(`❌ Failed: ${toEmail} - ${error.text || 'Unknown error'}`);
-                    updateStats();
+                    logEvent(`❌ Failed: ${toEmail}`);
                 })
                 .finally(function() {
+                    updateStats();
                     currentIndex++;
                     
-                    if (currentIndex < emailList.length && sendingActive) {
+                    // Check if we're done after increment
+                    if (currentIndex >= emailList.length) {
+                        // All done - stop after a short delay
+                        setTimeout(() => {
+                            if (sendingActive) {
+                                logEvent('✅ Campaign complete');
+                                stopSending();
+                            }
+                        }, 1000);
+                        return;
+                    }
+                    
+                    // Schedule next email if still active
+                    if (sendingActive) {
                         let seconds = 30;
                         const timerElement = document.getElementById('nextTimer');
                         
@@ -678,6 +706,7 @@
             logPanel.appendChild(entry);
             logPanel.scrollTop = logPanel.scrollHeight;
             
+            // Keep last 20 entries
             while (logPanel.children.length > 20) {
                 logPanel.removeChild(logPanel.firstChild);
             }
