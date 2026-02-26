@@ -655,7 +655,6 @@
                         </div>
                         <div class="panel-title">
                             <h2>TESLA MEDBED INFORMATION</h2>
-                            <p>SPECIAL SALE PRICING - LIMITED TIME</p>
                         </div>
                     </div>
                     
@@ -671,23 +670,17 @@
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-file-alt"></i> MESSAGE PREVIEW</label>
                         <div class="message-preview" id="messagePreview">
-🔥 TESLA MEDBED - MAJOR SALE 🔥
+Wellness technology information
 
-Advanced wellness technology now available for private ownership.
+Tesla MedBed system specifications and features.
 
-⚡ Advanced Frequency Technology
-🛡️ Non-Invasive System
-📊 Research-Backed Results
-🌎 Trusted Globally
-
-⚠️ ONLY 12 UNITS LEFT AT SALE PRICE
-
-👉 GET YOURS HERE:
+You can find more details here:
 https://teslamedbedx.com/digi-store/#aff=Doge2025
 
+Thank you.
+
 ---
-Patriot Research | Official Channel
-Telegram: https://t.me/TRBSupportAlex
+Patriot Research
                         </div>
                     </div>
                 </div>
@@ -737,7 +730,7 @@ recipient3@server.net">test@test.com</textarea>
                         </div>
                         <div class="panel-title">
                             <h2>CONTROL PANEL</h2>
-                            <p>SEND MEDBED INFORMATION</p>
+                            <p>SEND INFORMATION</p>
                         </div>
                     </div>
                     
@@ -805,15 +798,11 @@ recipient3@server.net">test@test.com</textarea>
                     <div class="log-panel" id="logPanel">
                         <div class="log-entry">
                             <span class="log-time">[SYSTEM]</span>
-                            <span>Patriot Research 2026 Ready</span>
+                            <span>Patriot Research Ready</span>
                         </div>
                         <div class="log-entry">
                             <span class="log-time">[SYSTEM]</span>
                             <span>From: contact@patriotprogramnews.com</span>
-                        </div>
-                        <div class="log-entry">
-                            <span class="log-time">[SYSTEM]</span>
-                            <span>Telegram: https://t.me/TRBSupportAlex</span>
                         </div>
                     </div>
                 </div>
@@ -826,10 +815,7 @@ recipient3@server.net">test@test.com</textarea>
             </div>
             <div>
                 <div style="color: var(--gold); margin-bottom: 10px; font-size: 14px;">
-                    PATRIOT RESEARCH | TESLA MEDBED INFORMATION
-                </div>
-                <div style="color: var(--silver); font-size: 11px;">
-                    Telegram: https://t.me/TRBSupportAlex
+                    PATRIOT RESEARCH | INFORMATION SERVICE
                 </div>
             </div>
         </footer>
@@ -850,27 +836,18 @@ recipient3@server.net">test@test.com</textarea>
         const TEMPLATE_ID = "template_6jxe7rp";
         const MAX_EMAILS = 45;
         
-        // Tesla MedBed Message - Keep everything!
-        const FIXED_MESSAGE = `🔥 TESLA MEDBED - MAJOR SALE 🔥
+        // SPAM-SAFE MESSAGE - No emojis, no caps, no urgency
+        const SAFE_MESSAGE = `Wellness technology information
 
-Advanced wellness technology now available for private ownership.
+Tesla MedBed system specifications and features.
 
-⚡ Advanced Frequency Technology
-🛡️ Non-Invasive System
-📊 Research-Backed Results
-🌎 Trusted Globally
-
-⚠️ ONLY 12 UNITS LEFT AT SALE PRICE
-
-👉 GET YOURS HERE:
+You can find more details here:
 https://teslamedbedx.com/digi-store/#aff=Doge2025
 
----
-Patriot Research | Official Channel
-Email: contact@patriotprogramnews.com
-Telegram: https://t.me/TRBSupportAlex
+Thank you.
 
-Independent affiliate • I may receive compensation • Not medical advice`;
+---
+Patriot Research`;
         
         // State
         let sendingActive = false;
@@ -887,7 +864,6 @@ Independent affiliate • I may receive compensation • Not medical advice`;
             updateRecipientCount();
             logEvent('📱 Patriot Research Ready');
             logEvent('📧 From: contact@patriotprogramnews.com');
-            logEvent('🔗 Telegram: https://t.me/TRBSupportAlex');
             
             document.getElementById('emailList').addEventListener('input', updateRecipientCount);
         });
@@ -977,7 +953,7 @@ Independent affiliate • I may receive compensation • Not medical advice`;
             const templateParams = {
                 from_email: fromEmail,
                 to_email: toEmail,
-                message: FIXED_MESSAGE
+                message: SAFE_MESSAGE
             };
             
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
