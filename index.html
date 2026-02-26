@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Patriot Research • Email System</title>
-    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patriot Research | Official Announcement 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -16,167 +14,373 @@
         })();
     </script>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* ALL YOUR EXISTING CSS */
+        :root {
+            --navy: #002868;
+            --crimson: #B22234;
+            --gold: #C99700;
+            --silver: #E8E8E8;
+            --patriot-blue: #003366;
+            --eagle-gold: #FFD700;
+            --send-green: #2ecc71;
+            --cooldown-blue: #3498db;
+            --reset-orange: #e67e22;
+            --dark-bg: #0a1929;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: #0a0c0f;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .app-container {
-            max-width: 500px;
-            width: 100%;
-            background: #111316;
-            min-height: 100vh;
-            border-left: 1px solid #2a2d34;
-            border-right: 1px solid #2a2d34;
-        }
-        
-        .app-header {
-            background: linear-gradient(145deg, #0f0f12, #1a1a1f);
-            padding: 20px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 3px solid #c9a03d;
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .header-left i {
-            font-size: 24px;
-            color: #c9a03d;
-        }
-        
-        .header-left h1 {
+            background: var(--dark-bg);
             color: white;
-            font-size: 20px;
-            font-weight: 600;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         
-        .header-left span {
-            color: #c9a03d;
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 40, 104, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(178, 34, 52, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(201, 151, 0, 0.1) 0%, transparent 50%);
         }
         
-        .badge {
-            background: #c9a03d;
-            color: #0a0c0f;
-            padding: 4px 10px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 700;
+        .pulse-grid {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, transparent 49%, rgba(255, 215, 0, 0.03) 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, rgba(255, 215, 0, 0.03) 50%, transparent 51%);
+            background-size: 60px 60px;
+            z-index: -1;
+            animation: gridPulse 8s infinite;
         }
         
-        .app-content {
-            padding: 16px;
-            padding-bottom: 80px;
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
         
-        .card {
-            background: #1a1d24;
-            border-radius: 20px;
+        .glow-orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 40, 104, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+            animation: orbMove 30s infinite alternate ease-in-out;
+        }
+        
+        @keyframes orbMove {
+            0% { transform: translate(10vw, 10vh); }
+            100% { transform: translate(80vw, 80vh); }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 20px;
-            margin-bottom: 16px;
-            border: 1px solid #2a2d34;
+            position: relative;
+            z-index: 1;
         }
         
-        .card-header {
+        .main-header {
+            background: linear-gradient(135deg, 
+                rgba(0, 40, 104, 0.9) 0%, 
+                rgba(0, 51, 102, 0.9) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 25px 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--send-green), 
+                var(--reset-orange), 
+                var(--cooldown-blue));
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-section {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #2a2d34;
+            gap: 20px;
         }
         
-        .card-header i {
-            color: #c9a03d;
-            font-size: 18px;
+        .logo-icon {
+            font-size: 42px;
+            color: var(--gold);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            animation: gentlePulse 3s infinite;
         }
         
-        .card-header h2 {
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .logo-text h1 {
+            font-size: 26px;
+            font-weight: 700;
             color: white;
-            font-size: 16px;
-            font-weight: 600;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
-        .input-group {
-            margin-bottom: 16px;
-        }
-        
-        .input-group label {
-            display: block;
-            color: #8a8f99;
-            font-size: 12px;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-        }
-        
-        .input-group input,
-        .input-group textarea {
-            width: 100%;
-            padding: 14px;
-            background: #111316;
-            border: 2px solid #2a2d34;
-            border-radius: 12px;
-            color: white;
-            font-size: 15px;
-        }
-        
-        .input-group input[readonly] {
-            background: #1a1d24;
-            color: #c9a03d;
-            border-color: #c9a03d;
-        }
-        
-        .recipient-count {
-            display: flex;
-            justify-content: space-between;
-            color: #8a8f99;
+        .logo-text p {
+            color: var(--silver);
             font-size: 13px;
-            margin-top: 8px;
+            letter-spacing: 0.5px;
         }
         
-        .stats-row {
+        .header-stats {
             display: flex;
-            justify-content: space-between;
-            background: #111316;
-            padding: 12px;
-            border-radius: 12px;
-            margin: 16px 0;
-            border: 1px solid #2a2d34;
+            gap: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
         }
         
         .stat-item {
             text-align: center;
-            flex: 1;
+            min-width: 80px;
         }
         
         .stat-value {
-            color: #c9a03d;
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 700;
+            color: var(--eagle-gold);
+            margin-bottom: 3px;
+            font-family: 'Courier New', monospace;
         }
         
         .stat-label {
-            color: #6b707c;
             font-size: 10px;
+            color: var(--silver);
             text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .panel {
+            background: linear-gradient(135deg, 
+                rgba(0, 40, 104, 0.85), 
+                rgba(0, 51, 102, 0.85));
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            margin-bottom: 25px;
+        }
+        
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--crimson), var(--gold), var(--crimson));
+        }
+        
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .panel-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--crimson), var(--navy));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--eagle-gold);
+            border: 2px solid var(--gold);
+        }
+        
+        .panel-title h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 3px;
+        }
+        
+        .panel-title p {
+            color: var(--silver);
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--silver);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            z-index: 1;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--eagle-gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        textarea.input-field {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+        
+        .message-preview {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--silver);
+            border-left: 4px solid var(--crimson);
+        }
+        
+        .pdf-attachment-box {
+            border: 3px dashed var(--gold);
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+            margin: 15px 0;
+        }
+        
+        .pdf-attachment-box i {
+            font-size: 48px;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .timing-display {
+            background: linear-gradient(135deg, 
+                rgba(39, 174, 96, 0.1), 
+                rgba(52, 152, 219, 0.1), 
+                rgba(230, 126, 34, 0.1));
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .timing-values {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .timing-item {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .timing-number {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--eagle-gold);
+            margin-bottom: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .timing-label {
+            font-size: 10px;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .progress-section {
@@ -186,444 +390,514 @@
         .progress-header {
             display: flex;
             justify-content: space-between;
-            color: #8a8f99;
+            margin-bottom: 10px;
+        }
+        
+        .progress-label {
+            color: var(--silver);
             font-size: 12px;
-            margin-bottom: 8px;
+        }
+        
+        .progress-percent {
+            color: var(--gold);
+            font-family: 'Courier New';
+            font-weight: bold;
         }
         
         .progress-bar {
             height: 10px;
-            background: #111316;
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 5px;
             overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #c9a03d, #dbb14e);
+            background: linear-gradient(90deg, var(--send-green), var(--gold));
             width: 0%;
-            transition: width 0.3s;
+            transition: width 0.5s ease-out;
         }
         
-        .button-group {
+        .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
             margin: 20px 0;
         }
         
-        .btn {
-            padding: 16px;
-            border: none;
-            border-radius: 60px;
-            font-size: 16px;
+        @media (max-width: 768px) {
+            .stats-grid, .timing-values {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .stat-card {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold);
+        }
+        
+        .stat-number {
+            font-size: 22px;
             font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--eagle-gold);
+        }
+        
+        .stat-text {
+            font-size: 10px;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .control-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .control-btn {
+            padding: 18px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            cursor: pointer;
+            gap: 12px;
+            transition: all 0.3s;
+            font-family: 'Segoe UI', sans-serif;
         }
         
         .btn-start {
-            background: #c9a03d;
-            color: #0a0c0f;
+            background: linear-gradient(135deg, var(--send-green), #27ae60);
+            color: white;
+            border: 2px solid var(--send-green);
+        }
+        
+        .btn-start:hover:not(:disabled) {
+            background: linear-gradient(135deg, #27ae60, var(--send-green));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(39, 174, 96, 0.4);
         }
         
         .btn-stop {
-            background: #3a2c2c;
-            color: #ff6b6b;
-            border: 1px solid #ff6b6b;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: 2px solid #c0392b;
         }
         
-        .btn:disabled {
+        .btn-stop:hover:not(:disabled) {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .control-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-        }
-        
-        .timer-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            background: #111316;
-            padding: 16px;
-            border-radius: 12px;
-            margin: 16px 0;
-            border: 1px solid #2a2d34;
-        }
-        
-        .timer-item {
-            text-align: center;
-        }
-        
-        .timer-label {
-            color: #6b707c;
-            font-size: 10px;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-        
-        .timer-value {
-            color: #c9a03d;
-            font-size: 24px;
-            font-weight: 700;
-            font-family: monospace;
+            transform: none !important;
+            box-shadow: none !important;
         }
         
         .log-panel {
-            background: #111316;
-            border: 1px solid #2a2d34;
-            border-radius: 12px;
-            padding: 16px;
-            height: 150px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(58, 58, 58, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            height: 280px;
             overflow-y: auto;
+            font-family: 'Courier New', monospace;
             font-size: 11px;
-            font-family: monospace;
         }
         
         .log-entry {
-            color: #b0b5c0;
-            padding: 4px 0;
-            border-bottom: 1px solid #2a2d34;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 0.3s;
         }
         
-        .app-footer {
-            position: fixed;
-            bottom: 0;
-            max-width: 500px;
-            width: 100%;
-            background: #0f0f12;
-            padding: 12px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .log-time {
+            color: var(--gold);
+            min-width: 75px;
+            font-size: 10px;
+        }
+        
+        .log-send { color: var(--send-green); }
+        .log-error { color: var(--crimson); }
+        .log-info { color: var(--silver); }
+        
+        .alert-area {
+            margin: 20px 0;
+        }
+        
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 4px solid;
+            animation: slideIn 0.3s;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .alert-send {
+            border-left-color: var(--send-green);
+            color: var(--send-green);
+        }
+        
+        .alert-error {
+            border-left-color: var(--crimson);
+            color: var(--crimson);
+        }
+        
+        .main-footer {
             text-align: center;
-            border-top: 2px solid #c9a03d;
-            font-size: 11px;
-            color: #5a5f6b;
+            padding: 25px;
+            color: var(--silver);
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 30px;
         }
         
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--navy), var(--crimson));
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
-            padding: 20px;
+            border: 2px solid var(--gold);
+            font-size: 24px;
+            color: var(--eagle-gold);
+            animation: gentlePulse 4s infinite;
         }
         
-        .modal-content {
-            background: #1a1d24;
-            border: 2px solid #c9a03d;
-            border-radius: 24px;
-            padding: 30px;
-            max-width: 300px;
-            text-align: center;
-        }
-        
-        .modal-content i {
-            font-size: 48px;
-            color: #c9a03d;
-            margin-bottom: 15px;
-        }
-        
-        .modal-content p {
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        .modal-content button {
-            background: #c9a03d;
-            color: #0a0c0f;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 40px;
-            font-weight: 700;
-            cursor: pointer;
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .header-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .control-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <div class="app-header">
-            <div class="header-left">
-                <i class="fas fa-paper-plane"></i>
-                <h1>PATRIOT <span>SEND</span></h1>
-            </div>
-            <div class="badge">FINAL</div>
-        </div>
-        
-        <div class="app-content">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-envelope"></i>
-                    <h2>CAMPAIGN DETAILS</h2>
+    <div class="animated-bg"></div>
+    <div class="pulse-grid"></div>
+    <div class="glow-orb"></div>
+    
+    <div class="container">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>PATRIOT RESEARCH 2026</h1>
+                        <p>OFFICIAL ANNOUNCEMENT SYSTEM</p>
+                    </div>
                 </div>
-                
-                <div class="input-group">
-                    <label>FROM EMAIL</label>
-                    <input type="email" id="fromEmail" value="contact@patriotprogramnews.com" readonly>
-                </div>
-                
-                <div class="input-group">
-                    <label>SUBJECT</label>
-                    <input type="text" id="subject" value="⚠️ 12 units left at sale price">
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-users"></i>
-                    <h2>RECIPIENTS</h2>
-                    <span>MAX 45</span>
-                </div>
-                
-                <div class="input-group">
-                    <label>EMAIL ADDRESSES (ONE PER LINE)</label>
-                    <textarea id="recipients" rows="5" placeholder="email1@example.com">test@test.com</textarea>
-                </div>
-                
-                <div class="recipient-count">
-                    <span id="totalEmails">1</span>
-                    <span>total</span>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-chart-line"></i>
-                    <h2>PROGRESS</h2>
-                </div>
-                
-                <div class="stats-row">
+                <div class="header-stats">
                     <div class="stat-item">
-                        <div class="stat-value" id="statSent">0</div>
+                        <div class="stat-value" id="headerSent">0</div>
                         <div class="stat-label">SENT</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value" id="statFailed">0</div>
+                        <div class="stat-value" id="headerFailed">0</div>
                         <div class="stat-label">FAILED</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value" id="statTotal">0</div>
-                        <div class="stat-label">TOTAL</div>
+                        <div class="stat-value">30s</div>
+                        <div class="stat-label">INTERVAL</div>
                     </div>
                 </div>
-                
-                <div class="progress-section">
-                    <div class="progress-header">
-                        <span>PROGRESS</span>
-                        <span id="progressPercent">0%</span>
+            </div>
+        </header>
+        
+        <div class="main-grid">
+            <!-- LEFT COLUMN -->
+            <div>
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="panel-title">
+                            <h2>OFFICIAL ANNOUNCEMENT</h2>
+                            <p>PATRIOT 2026 - VERIFIED MESSAGE</p>
+                        </div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-at"></i> FROM EMAIL ADDRESS</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" class="input-field" id="fromEmail" 
+                                   value="contact@patriotprogramnews.com" placeholder="contact@patriotprogramnews.com" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-file-alt"></i> ANNOUNCEMENT TEXT</label>
+                        <div class="message-preview" id="messagePreview">
+🚀 IMPORTANT ANNOUNCEMENT FROM PATRIOT RESEARCH
+
+Dear Valued Supporter,
+
+We are pleased to share our latest official document regarding Patriot Research's ongoing initiatives and future developments.
+
+Please find the attached PDF for complete details.
+
+For immediate assistance or inquiries, contact our verified support:
+📱 Telegram: https://t.me/TRBSupportAlex
+
+Thank you for your continued trust in Patriot Research.
+
+Best regards,
+Patriot Research Team
+
+---
+Patriot Research | Official Channel
+Email: contact@patriotprogramnews.com
+Telegram: https://t.me/TRBSupportAlex
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-file-pdf"></i> PATRIOT 2026 ANNOUNCEMENT.PDF</label>
+                        <div class="pdf-attachment-box">
+                            <i class="fas fa-file-pdf" style="color: var(--crimson);"></i>
+                            <p style="color: white; margin-bottom: 5px;">Patriot_2026_Announcement.pdf</p>
+                            <p style="color: var(--send-green); font-size: 11px;">✓ ATTACHMENT CONFIGURED IN EMAILJS</p>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-play"></i>
-                    <h2>CONTROL</h2>
-                </div>
-                
-                <div class="button-group">
-                    <button class="btn btn-start" id="startBtn" onclick="startSending()">
-                        <i class="fas fa-play"></i> START
-                    </button>
-                    <button class="btn btn-stop" id="stopBtn" onclick="stopSending()" disabled>
-                        <i class="fas fa-stop"></i> STOP
-                    </button>
-                </div>
-                
-                <div class="timer-row">
-                    <div class="timer-item">
-                        <div class="timer-label">NEXT EMAIL</div>
-                        <div class="timer-value" id="nextTimer">30s</div>
+            <!-- RIGHT COLUMN -->
+            <div>
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="panel-title">
+                            <h2>RECIPIENT LIST</h2>
+                            <p>VERIFIED ADDRESSES ONLY</p>
+                        </div>
                     </div>
-                    <div class="timer-item">
-                        <div class="timer-label">ELAPSED</div>
-                        <div class="timer-value" id="elapsedTimer">00:00</div>
+                    
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-address-book"></i> EMAIL ADDRESSES (ONE PER LINE)</label>
+                        <textarea class="input-field" id="emailList" rows="8" placeholder="recipient1@example.com
+recipient2@domain.com
+recipient3@server.net">test@test.com</textarea>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid var(--gold);">
+                        <div style="color: var(--silver); font-size: 11px; margin-bottom: 10px;">
+                            <i class="fas fa-chart-pie"></i> LIST ANALYSIS
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                            <div>
+                                <div style="color: white; font-size: 18px; font-weight: bold;" id="totalEmails">1</div>
+                                <div style="color: var(--silver); font-size: 9px;">TOTAL EMAILS</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--send-green); font-size: 18px; font-weight: bold;" id="estimatedTime">0.5</div>
+                                <div style="color: var(--silver); font-size: 9px;">ESTIMATED MINUTES</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-terminal"></i>
-                    <h2>EVENT LOG</h2>
+                
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="panel-title">
+                            <h2>CONTROL PANEL</h2>
+                            <p>SEND ANNOUNCEMENTS WITH PDF</p>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <span class="progress-label">SENDING PROGRESS</span>
+                            <span class="progress-percent" id="progressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="statSent">0</div>
+                            <div class="stat-text">SENT</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="statFailed">0</div>
+                            <div class="stat-text">FAILED</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="statRemaining">45</div>
+                            <div class="stat-text">REMAINING</div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-buttons">
+                        <button class="control-btn btn-start" id="startBtn" onclick="startSending()">
+                            <i class="fas fa-play"></i> START SENDING
+                        </button>
+                        <button class="control-btn btn-stop" id="stopBtn" onclick="stopSending()" disabled>
+                            <i class="fas fa-stop"></i> STOP SENDING
+                        </button>
+                    </div>
+                    
+                    <div class="timing-display">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <div style="color: var(--silver); font-size: 10px;">NEXT EMAIL IN</div>
+                                <div style="color: var(--eagle-gold); font-size: 28px; font-family: 'Courier New';" id="nextTimer">30s</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--silver); font-size: 10px;">ELAPSED TIME</div>
+                                <div style="color: white; font-size: 28px; font-family: 'Courier New';" id="elapsedTimer">00:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-area" id="alertArea"></div>
                 </div>
                 
-                <div class="log-panel" id="logPanel">
-                    <div class="log-entry">📱 System ready</div>
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div class="panel-title">
+                            <h2>EVENT LOG</h2>
+                            <p>SYSTEM ACTIVITY</p>
+                        </div>
+                    </div>
+                    
+                    <div class="log-panel" id="logPanel">
+                        <div class="log-entry">
+                            <span class="log-time">[SYSTEM]</span>
+                            <span>Patriot Research 2026 System Initialized</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-time">[SYSTEM]</span>
+                            <span>From: contact@patriotprogramnews.com</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-time">[SYSTEM]</span>
+                            <span>PDF Attachment: Patriot_2026_Announcement.pdf</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-time">[SYSTEM]</span>
+                            <span>Telegram: https://t.me/TRBSupportAlex</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="app-footer">
-            PATRIOT RESEARCH • FINAL VERSION
-        </div>
+        <footer class="main-footer">
+            <div class="footer-logo">
+                <i class="fas fa-handshake"></i>
+            </div>
+            <div>
+                <div style="color: var(--gold); margin-bottom: 10px; font-size: 14px;">
+                    PATRIOT RESEARCH | OFFICIAL ANNOUNCEMENT 2026
+                </div>
+                <div style="color: var(--silver); font-size: 11px;">
+                    Telegram: https://t.me/TRBSupportAlex
+                </div>
+            </div>
+        </footer>
     </div>
     
-    <div class="modal" id="alertModal">
-        <div class="modal-content">
-            <i class="fas fa-info-circle"></i>
-            <p id="modalMessage">Message</p>
-            <button onclick="closeModal()">OK</button>
+    <!-- ALERT MODAL -->
+    <div class="modal" id="alertModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; z-index: 1000;">
+        <div style="background: var(--dark-bg); border: 2px solid var(--gold); border-radius: 12px; padding: 30px; max-width: 300px; text-align: center;">
+            <i class="fas fa-info-circle" style="color: var(--gold); font-size: 48px; margin-bottom: 15px;"></i>
+            <p id="modalMessage" style="color: white; margin-bottom: 20px;">Message</p>
+            <button onclick="closeModal()" style="background: var(--gold); color: var(--dark-bg); border: none; padding: 10px 30px; border-radius: 6px; font-weight: bold; cursor: pointer;">OK</button>
         </div>
     </div>
 
     <script>
+        // EmailJS Config - NEW IDs
         const SERVICE_ID = "service_edtx9of";
         const TEMPLATE_ID = "template_6jxe7rp";
-        const MAX_EMAILS = 45;
         
-        // YOUR BEAUTIFUL HTML TEMPLATE
-        const HTML_TEMPLATE = `<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background: #0a0c0f;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        .container {
-            max-width: 560px;
-            margin: 0 auto;
-            background: #111316;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid #2a2d34;
-        }
-        .header {
-            padding: 24px 20px;
-            background: linear-gradient(145deg, #0f0f12, #1a1a1f);
-            border-bottom: 2px solid #c9a03d;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-        .logo-text {
-            font-size: 20px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-        .logo-text span {
-            color: #c9a03d;
-            font-weight: 700;
-        }
-        .eagle {
-            font-size: 28px;
-            color: #c9a03d;
-        }
-        h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.2;
-            margin-bottom: 6px;
-        }
-        h1 .gold {
-            color: #c9a03d;
-            display: block;
-        }
-        .subhead {
-            color: #8a8f99;
-            font-size: 14px;
-        }
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .sale-banner {
-            background: #c9a03d;
-            color: #0a0c0f;
-            text-align: center;
-            padding: 16px;
-            font-weight: 800;
-            font-size: 22px;
-            border-bottom: 2px solid #ffffff;
-        }
-        .content {
-            padding: 24px 20px;
-        }
-        h2 {
-            font-size: 24px;
-            color: #ffffff;
-            margin-bottom: 10px;
-            border-left: 4px solid #c9a03d;
-            padding-left: 12px;
-        }
-        .sale-card {
-            background: #1a1d24;
-            border: 2px solid #c9a03d;
-            border-radius: 20px;
-            padding: 24px;
-            text-align: center;
-        }
-        .buy-button {
-            display: block;
-            background: #c9a03d;
-            color: #0a0c0f;
-            text-decoration: none;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: 800;
-            border-radius: 60px;
-            text-transform: uppercase;
-        }
-        .footer {
-            background: #0a0c0f;
-            padding: 20px;
-            text-align: center;
-        }
-        .footer p {
-            color: #3f434d;
-            font-size: 11px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <div class="logo-text">PATRIOT <span>RESEARCH</span></div>
-                <div class="eagle">🦅</div>
-            </div>
-            <h1>Private release.<span class="gold">Limited inventory.</span></h1>
-        </div>
+        // Official announcement message (SAME STYLE AS FIRST SITE)
+        const FIXED_MESSAGE = `🚀 IMPORTANT ANNOUNCEMENT FROM PATRIOT RESEARCH
+
+Dear Valued Supporter,
+
+We are pleased to share our latest official document regarding Patriot Research's ongoing initiatives and future developments.
+
+Please find the attached PDF for complete details.
+
+For immediate assistance or inquiries, contact our verified support:
+📱 Telegram: https://t.me/TRBSupportAlex
+
+Thank you for your continued trust in Patriot Research.
+
+Best regards,
+Patriot Research Team
+
+---
+Patriot Research | Official Channel
+Email: contact@patriotprogramnews.com
+Telegram: https://t.me/TRBSupportAlex`;
         
-        <img src="https://i.imgur.com/ocRXu6X.png" style="width:100%; display:block;">
-        
-        <div class="sale-banner">🔥 MAJOR SALE 🔥 LIVE NOW</div>
-        
-        <div class="content">
-            <h2>Tesla MedBed System</h2>
-            <div class="sale-card">
-                <div style="color:#c9a03d; margin-bottom:10px;">⚡ LIMITED TIME ⚡</div>
-                <div style="font-size:36px; color:white; margin-bottom:15px;">ON <span style="color:#c9a03d;">SALE</span> NOW</div>
-                <div style="color:#ff6b6b; margin-bottom:20px;">⚠️ ONLY 12 UNITS REMAIN</div>
-                <a href="https://teslamedbedx.com/digi-store/#aff=Doge2025" class="buy-button">GET THE SALE PRICE →</a>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>© 2026 Patriot Research • contact@patriotprogramnews.com</p>
-        </div>
-    </div>
-</body>
-</html>`;
-        
+        // State
         let sendingActive = false;
         let currentIndex = 0;
         let emailList = [];
@@ -632,35 +906,47 @@
         let timerInterval = null;
         let countdownInterval = null;
         let sendTimeout = null;
-        
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             updateRecipientCount();
-            logEvent('📱 System ready');
-            document.getElementById('recipients').addEventListener('input', updateRecipientCount);
+            logEvent('📱 Patriot Research 2026 System Ready');
+            logEvent('📧 From: contact@patriotprogramnews.com');
+            logEvent('📎 PDF: Patriot_2026_Announcement.pdf');
+            logEvent('🔗 Telegram: https://t.me/TRBSupportAlex');
+            
+            document.getElementById('emailList').addEventListener('input', updateRecipientCount);
         });
         
         function updateRecipientCount() {
-            const text = document.getElementById('recipients').value;
+            const text = document.getElementById('emailList').value;
             const emails = text.split('\n')
                 .map(e => e.trim())
                 .filter(e => e.includes('@') && e.length > 0)
-                .slice(0, MAX_EMAILS);
+                .slice(0, 45); // MAX 45
             
             document.getElementById('totalEmails').textContent = emails.length;
-            document.getElementById('statTotal').textContent = emails.length;
+            
+            const minutes = (emails.length * 0.5).toFixed(1);
+            document.getElementById('estimatedTime').textContent = minutes;
+            document.getElementById('statRemaining').textContent = 45 - (sentCount + failedCount);
         }
         
         function startSending() {
             if (sendingActive) return;
             
             const fromEmail = document.getElementById('fromEmail').value;
-            const subject = document.getElementById('subject').value;
-            const recipientsText = document.getElementById('recipients').value;
+            const recipientsText = document.getElementById('emailList').value;
+            
+            if (!fromEmail || !fromEmail.includes('@')) {
+                showAlert('Enter valid FROM email');
+                return;
+            }
             
             emailList = recipientsText.split('\n')
                 .map(e => e.trim())
-                .filter(e => e.includes('@') && e.length > 0)
-                .slice(0, MAX_EMAILS);
+                .filter(e => e.includes('@'))
+                .slice(0, 45); // MAX 45
             
             if (emailList.length === 0) {
                 showAlert('Enter at least one recipient');
@@ -674,8 +960,11 @@
             
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = false;
+            document.getElementById('headerSent').textContent = '0';
+            document.getElementById('headerFailed').textContent = '0';
             
             logEvent(`▶️ Started sending to ${emailList.length} recipients`);
+            logEvent(`📎 PDF will be attached from EmailJS`);
             updateStats();
             startTimers();
             
@@ -701,36 +990,38 @@
             if (!sendingActive) return;
             
             if (currentIndex >= emailList.length) {
-                logEvent('✅ Complete!');
-                showAlert('Campaign complete!');
                 stopSending();
+                logEvent('✅ All announcements sent!');
+                showAlert('Sending complete!');
                 return;
             }
             
             const toEmail = emailList[currentIndex];
             const fromEmail = document.getElementById('fromEmail').value;
-            const subject = document.getElementById('subject').value;
             
-            logEvent(`📧 Sending to ${toEmail}...`);
+            logEvent(`📧 Sending to ${toEmail} with PDF...`);
             
             const templateParams = {
-                to_email: toEmail,
                 from_email: fromEmail,
-                subject: subject,
-                html_message: HTML_TEMPLATE
+                to_email: toEmail,
+                message: FIXED_MESSAGE  // Subject is in EmailJS template
             };
             
+            // Send with PDF attachment (configured in EmailJS dashboard)
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
                 .then(function(response) {
                     sentCount++;
-                    logEvent(`✅ Sent to ${toEmail}`);
+                    document.getElementById('headerSent').textContent = sentCount;
+                    logEvent(`✅ Sent to ${toEmail} (PDF attached from EmailJS)`);
+                    updateStats();
                 })
                 .catch(function(error) {
                     failedCount++;
+                    document.getElementById('headerFailed').textContent = failedCount;
                     logEvent(`❌ Failed: ${toEmail} - ${error.text || 'Error'}`);
+                    updateStats();
                 })
                 .finally(function() {
-                    updateStats();
                     currentIndex++;
                     
                     if (currentIndex < emailList.length && sendingActive) {
@@ -740,16 +1031,28 @@
                         clearInterval(countdownInterval);
                         countdownInterval = setInterval(() => {
                             seconds--;
+                            if (seconds < 0) {
+                                clearInterval(countdownInterval);
+                                return;
+                            }
                             timerElement.textContent = seconds + 's';
                         }, 1000);
                         
-                        sendTimeout = setTimeout(sendNextEmail, 30000);
+                        sendTimeout = setTimeout(() => {
+                            sendNextEmail();
+                        }, 30000);
+                    } else if (currentIndex >= emailList.length) {
+                        setTimeout(() => {
+                            stopSending();
+                            logEvent('✅ Complete!');
+                        }, 1000);
                     }
                 });
         }
         
         function startTimers() {
             let elapsed = 0;
+            clearInterval(timerInterval);
             timerInterval = setInterval(() => {
                 elapsed++;
                 const mins = Math.floor(elapsed / 60);
@@ -759,6 +1062,7 @@
             }, 1000);
             
             let seconds = 30;
+            clearInterval(countdownInterval);
             countdownInterval = setInterval(() => {
                 seconds--;
                 if (seconds < 0) seconds = 30;
@@ -768,33 +1072,42 @@
         
         function updateStats() {
             const total = emailList.length;
-            const progress = ((sentCount + failedCount) / total) * 100;
+            const progress = total > 0 ? ((sentCount + failedCount) / total) * 100 : 0;
             
             document.getElementById('statSent').textContent = sentCount;
             document.getElementById('statFailed').textContent = failedCount;
+            document.getElementById('statRemaining').textContent = total - (sentCount + failedCount);
             document.getElementById('progressFill').style.width = progress + '%';
             document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
         }
         
         function logEvent(message) {
             const logPanel = document.getElementById('logPanel');
-            const time = new Date().toLocaleTimeString();
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            
             const entry = document.createElement('div');
             entry.className = 'log-entry';
-            entry.textContent = `[${time}] ${message}`;
+            entry.innerHTML = `<span class="log-time">[${time}]</span> <span>${message}</span>`;
+            
             logPanel.appendChild(entry);
             logPanel.scrollTop = logPanel.scrollHeight;
+            
+            while (logPanel.children.length > 50) {
+                logPanel.removeChild(logPanel.firstChild);
+            }
         }
         
         function showAlert(message) {
             document.getElementById('modalMessage').textContent = message;
             document.getElementById('alertModal').style.display = 'flex';
+            logEvent(`⚠️ ${message}`);
         }
         
         function closeModal() {
             document.getElementById('alertModal').style.display = 'none';
         }
         
+        // Expose functions
         window.startSending = startSending;
         window.stopSending = stopSending;
         window.closeModal = closeModal;
