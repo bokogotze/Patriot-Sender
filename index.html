@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Patriot Research • Email System</title>
     
-    <!-- MAKE IT AN APP ON IPHONE -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Patriot Send">
     
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -18,10 +16,10 @@
         })();
     </script>
     
-    <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* ALL YOUR EXISTING CSS STAYS THE SAME */
         * {
             margin: 0;
             padding: 0;
@@ -147,6 +145,12 @@
             border-radius: 12px;
             color: white;
             font-size: 15px;
+        }
+        
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #c9a03d;
         }
         
         .input-group input[readonly] {
@@ -411,7 +415,7 @@
                 
                 <div class="recipient-count">
                     <span id="totalEmails">1</span>
-                    <span id="maxWarning" style="color:#ff6b6b; display:none;">MAX 45 REACHED</span>
+                    <span>total</span>
                 </div>
             </div>
             
@@ -484,8 +488,7 @@
                 </div>
                 
                 <div class="log-panel" id="logPanel">
-                    <div class="log-entry">📱 System ready - MAX 45 emails</div>
-                    <div class="log-entry">📧 Auto-stops after list completes</div>
+                    <div class="log-entry">📱 System ready</div>
                 </div>
             </div>
         </div>
@@ -508,6 +511,241 @@
         const TEMPLATE_ID = "template_6jxe7rp";
         const MAX_EMAILS = 45;
         
+        // YOUR BEAUTIFUL HTML TEMPLATE - THIS IS WHAT WILL BE SENT
+        const HTML_TEMPLATE = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0c0f;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 560px;
+            margin: 0 auto;
+            background: #111316;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid #2a2d34;
+        }
+        .header {
+            padding: 24px 20px;
+            background: linear-gradient(145deg, #0f0f12, #1a1a1f);
+            border-bottom: 2px solid #c9a03d;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .logo-text span {
+            color: #c9a03d;
+            font-weight: 700;
+        }
+        .eagle {
+            font-size: 28px;
+            color: #c9a03d;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+        h1 .gold {
+            color: #c9a03d;
+            display: block;
+        }
+        .subhead {
+            color: #8a8f99;
+            font-size: 14px;
+        }
+        .hero-image {
+            width: 100%;
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .sale-banner {
+            background: #c9a03d;
+            color: #0a0c0f;
+            text-align: center;
+            padding: 16px 12px;
+            font-weight: 800;
+            font-size: 22px;
+            border-bottom: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .sale-banner span {
+            background: #0a0c0f;
+            color: #c9a03d;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 16px;
+        }
+        .content {
+            padding: 24px 20px;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            border-left: 4px solid #c9a03d;
+            padding-left: 12px;
+        }
+        p {
+            color: #b0b5c0;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .sale-card {
+            background: #1a1d24;
+            border: 2px solid #c9a03d;
+            border-radius: 20px;
+            padding: 24px 16px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .sale-header {
+            color: #c9a03d;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .sale-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .sale-title span {
+            color: #c9a03d;
+        }
+        .limited-tag {
+            background: #c9a03d;
+            color: #0a0c0f;
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+        .stock-warning {
+            color: #ff6b6b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: rgba(255,107,107,0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .buy-button {
+            display: block;
+            background: #c9a03d;
+            color: #0a0c0f;
+            text-decoration: none;
+            padding: 20px 16px;
+            font-size: 24px;
+            font-weight: 800;
+            border-radius: 60px;
+            margin: 20px 0 12px;
+            text-transform: uppercase;
+        }
+        .secure-checkout {
+            color: #5a5f6b;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .footer {
+            background: #0a0c0f;
+            padding: 20px 16px;
+            text-align: center;
+            border-top: 1px solid #1f2127;
+        }
+        .footer p {
+            color: #3f434d;
+            font-size: 11px;
+            margin: 0;
+        }
+        .disclaimer {
+            color: #26282f;
+            font-size: 7px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-text">PATRIOT <span>RESEARCH</span></div>
+                <div class="eagle">🦅</div>
+            </div>
+            <h1>Private release.<span class="gold">Limited inventory.</span></h1>
+            <div class="subhead">Exclusive access • While supplies last</div>
+        </div>
+        
+        <div class="hero-image">
+            <img src="https://i.imgur.com/ocRXu6X.png" alt="Tesla MedBed" style="width:100%; height:auto;">
+        </div>
+        
+        <div class="sale-banner">
+            🔥 MAJOR SALE 🔥 <span>LIVE NOW</span>
+        </div>
+        
+        <div class="content">
+            <h2>Tesla MedBed System</h2>
+            <p>Advanced wellness technology now available for private ownership. This is a limited-time release at special sale pricing.</p>
+            
+            <div class="sale-card">
+                <div class="sale-header">⚡ LIMITED TIME ⚡</div>
+                <div class="sale-title">ON <span>SALE</span> NOW</div>
+                <div class="limited-tag">WHILE SUPPLIES LAST</div>
+                <div class="stock-warning">⚠️ ONLY 12 UNITS REMAIN AT SALE PRICE</div>
+                <a href="https://teslamedbedx.com/digi-store/#aff=Doge2025" class="buy-button">GET THE SALE PRICE →</a>
+                <div class="secure-checkout">
+                    <span>🔒 SECURE</span> • <span>⚡ INSTANT</span> • <span>🔄 GUARANTEE</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 Patriot Research • contact@patriotprogramnews.com</p>
+            <div class="disclaimer">Independent affiliate • I may receive compensation • No direct relationship with manufacturer • Not medical advice</div>
+        </div>
+    </div>
+</body>
+</html>`;
+        
         let sendingActive = false;
         let currentIndex = 0;
         let emailList = [];
@@ -516,12 +754,10 @@
         let timerInterval = null;
         let countdownInterval = null;
         let sendTimeout = null;
-        let completed = false;
         
         document.addEventListener('DOMContentLoaded', function() {
             updateRecipientCount();
             logEvent('📱 System ready');
-            logEvent('📧 Max 45 emails • Auto-stop enabled');
             
             document.getElementById('recipients').addEventListener('input', updateRecipientCount);
         });
@@ -531,17 +767,10 @@
             const emails = text.split('\n')
                 .map(e => e.trim())
                 .filter(e => e.includes('@') && e.length > 0)
-                .slice(0, MAX_EMAILS); // LIMIT TO 45
+                .slice(0, MAX_EMAILS);
             
             document.getElementById('totalEmails').textContent = emails.length;
             document.getElementById('statTotal').textContent = emails.length;
-            
-            // Show warning if over 45
-            if (emails.length >= MAX_EMAILS) {
-                document.getElementById('maxWarning').style.display = 'inline';
-            } else {
-                document.getElementById('maxWarning').style.display = 'none';
-            }
         }
         
         function startSending() {
@@ -551,23 +780,20 @@
             const subject = document.getElementById('subject').value;
             const recipientsText = document.getElementById('recipients').value;
             
-            // Parse and LIMIT to 45 emails
             emailList = recipientsText.split('\n')
                 .map(e => e.trim())
                 .filter(e => e.includes('@') && e.length > 0)
-                .slice(0, MAX_EMAILS); // ← ENFORCE MAX 45
+                .slice(0, MAX_EMAILS);
             
             if (emailList.length === 0) {
                 showAlert('Enter at least one recipient');
                 return;
             }
             
-            // Reset state
             sendingActive = true;
             currentIndex = 0;
             sentCount = 0;
             failedCount = 0;
-            completed = false;
             
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = false;
@@ -576,7 +802,6 @@
             updateStats();
             startTimers();
             
-            // Send first email
             sendNextEmail();
         }
         
@@ -598,11 +823,10 @@
         function sendNextEmail() {
             if (!sendingActive) return;
             
-            // STOP if we've sent all emails
             if (currentIndex >= emailList.length) {
-                logEvent('✅ Campaign complete - All emails sent');
+                logEvent('✅ Campaign complete');
                 showAlert('Campaign complete!');
-                stopSending(); // AUTO-STOP
+                stopSending();
                 return;
             }
             
@@ -612,10 +836,12 @@
             
             logEvent(`📧 Sending to ${toEmail}...`);
             
+            // FIXED: Using html_message to match template
             const templateParams = {
                 to_email: toEmail,
                 from_email: fromEmail,
-                subject: subject
+                subject: subject,
+                html_message: HTML_TEMPLATE // ← THIS IS THE KEY FIX
             };
             
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
@@ -631,20 +857,7 @@
                     updateStats();
                     currentIndex++;
                     
-                    // Check if we're done after increment
-                    if (currentIndex >= emailList.length) {
-                        // All done - stop after a short delay
-                        setTimeout(() => {
-                            if (sendingActive) {
-                                logEvent('✅ Campaign complete');
-                                stopSending();
-                            }
-                        }, 1000);
-                        return;
-                    }
-                    
-                    // Schedule next email if still active
-                    if (sendingActive) {
+                    if (currentIndex < emailList.length && sendingActive) {
                         let seconds = 30;
                         const timerElement = document.getElementById('nextTimer');
                         
@@ -661,6 +874,13 @@
                         sendTimeout = setTimeout(() => {
                             sendNextEmail();
                         }, 30000);
+                    } else if (currentIndex >= emailList.length) {
+                        setTimeout(() => {
+                            if (sendingActive) {
+                                logEvent('✅ Complete');
+                                stopSending();
+                            }
+                        }, 1000);
                     }
                 });
         }
@@ -706,7 +926,6 @@
             logPanel.appendChild(entry);
             logPanel.scrollTop = logPanel.scrollHeight;
             
-            // Keep last 20 entries
             while (logPanel.children.length > 20) {
                 logPanel.removeChild(logPanel.firstChild);
             }
