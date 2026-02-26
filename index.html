@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patriot Research | Official Announcement 2026</title>
+    <title>TRB Foundation | Official Announcement 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- EmailJS -->
@@ -307,6 +307,12 @@
             background: rgba(0, 0, 0, 0.6);
         }
         
+        .input-field[readonly] {
+            background: #1a1d24;
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+        
         textarea.input-field {
             min-height: 120px;
             resize: vertical;
@@ -324,6 +330,37 @@
             font-size: 13px;
             color: var(--silver);
             border-left: 4px solid var(--crimson);
+        }
+        
+        .pdf-attachment-box {
+            border: 3px dashed var(--gold);
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+            margin: 15px 0;
+        }
+        
+        .pdf-attachment-box i {
+            font-size: 48px;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .pdf-attachment-box p {
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        .pdf-attachment-box .pdf-name {
+            color: var(--crimson);
+            font-weight: bold;
+        }
+        
+        .pdf-attachment-box .pdf-status {
+            color: var(--send-green);
+            font-size: 11px;
         }
         
         .timing-display {
@@ -618,7 +655,7 @@
                         <i class="fas fa-paper-plane"></i>
                     </div>
                     <div class="logo-text">
-                        <h1>PATRIOT RESEARCH 2026</h1>
+                        <h1>TRB FOUNDATION 2026</h1>
                         <p>OFFICIAL ANNOUNCEMENT SYSTEM</p>
                     </div>
                 </div>
@@ -649,7 +686,7 @@
                         </div>
                         <div class="panel-title">
                             <h2>OFFICIAL ANNOUNCEMENT</h2>
-                            <p>PATRIOT 2026 - VERIFIED MESSAGE</p>
+                            <p>TRB 2026 - VERIFIED MESSAGE</p>
                         </div>
                     </div>
                     
@@ -665,24 +702,35 @@
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-file-alt"></i> ANNOUNCEMENT TEXT</label>
                         <div class="message-preview" id="messagePreview">
-🚀 IMPORTANT ANNOUNCEMENT FROM PATRIOT RESEARCH
+🚀 IMPORTANT ANNOUNCEMENT FROM TRB FOUNDATION
 
 Dear Valued Supporter,
 
-We are pleased to share our latest official document regarding Patriot Research's ongoing initiatives and future developments.
+We are pleased to share our latest official document regarding TRB Foundation's ongoing initiatives and future developments.
+
+Please find the attached PDF for complete details.
 
 For immediate assistance or inquiries, contact our verified support:
 📱 Telegram: https://t.me/TRBSupportAlex
 
-Thank you for your continued trust in Patriot Research.
+Thank you for your continued trust in TRB Foundation.
 
 Best regards,
-Patriot Research Team
+TRB Foundation Team
 
 ---
-Patriot Research | Official Channel
+TRB Foundation | Official Channel
 Email: contact@patriotprogramnews.com
 Telegram: https://t.me/TRBSupportAlex
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-file-pdf"></i> TRB 2026 ANNOUNCEMENT.PDF</label>
+                        <div class="pdf-attachment-box">
+                            <i class="fas fa-file-pdf" style="color: var(--crimson);"></i>
+                            <p class="pdf-name">TRB_2026_Announcement.pdf</p>
+                            <p class="pdf-status">✓ ATTACHMENT CONFIGURED IN EMAILJS</p>
                         </div>
                     </div>
                 </div>
@@ -732,7 +780,7 @@ recipient3@server.net">test@test.com</textarea>
                         </div>
                         <div class="panel-title">
                             <h2>CONTROL PANEL</h2>
-                            <p>SEND ANNOUNCEMENTS</p>
+                            <p>SEND ANNOUNCEMENTS WITH PDF</p>
                         </div>
                     </div>
                     
@@ -800,11 +848,15 @@ recipient3@server.net">test@test.com</textarea>
                     <div class="log-panel" id="logPanel">
                         <div class="log-entry">
                             <span class="log-time">[SYSTEM]</span>
-                            <span>Patriot Research 2026 System Initialized</span>
+                            <span>TRB Foundation 2026 System Initialized</span>
                         </div>
                         <div class="log-entry">
                             <span class="log-time">[SYSTEM]</span>
                             <span>From: contact@patriotprogramnews.com</span>
+                        </div>
+                        <div class="log-entry">
+                            <span class="log-time">[SYSTEM]</span>
+                            <span>PDF Attachment: TRB_2026_Announcement.pdf</span>
                         </div>
                         <div class="log-entry">
                             <span class="log-time">[SYSTEM]</span>
@@ -821,7 +873,7 @@ recipient3@server.net">test@test.com</textarea>
             </div>
             <div>
                 <div style="color: var(--gold); margin-bottom: 10px; font-size: 14px;">
-                    PATRIOT RESEARCH | OFFICIAL ANNOUNCEMENT 2026
+                    TRB FOUNDATION | OFFICIAL ANNOUNCEMENT 2026
                 </div>
                 <div style="color: var(--silver); font-size: 11px;">
                     Telegram: https://t.me/TRBSupportAlex
@@ -845,23 +897,25 @@ recipient3@server.net">test@test.com</textarea>
         const TEMPLATE_ID = "template_6jxe7rp";
         const MAX_EMAILS = 45;
         
-        // Your message (customize this)
-        const PATRIOT_MESSAGE = `🚀 IMPORTANT ANNOUNCEMENT FROM PATRIOT RESEARCH
+        // ORIGINAL TRB MESSAGE - ONLY EMAIL CHANGED
+        const TRB_MESSAGE = `🚀 IMPORTANT ANNOUNCEMENT FROM TRB FOUNDATION
 
 Dear Valued Supporter,
 
-We are pleased to share our latest information regarding Patriot Research's ongoing initiatives and future developments.
+We are pleased to share our latest official document regarding TRB Foundation's ongoing initiatives and future developments.
+
+Please find the attached PDF for complete details.
 
 For immediate assistance or inquiries, contact our verified support:
 📱 Telegram: https://t.me/TRBSupportAlex
 
-Thank you for your continued trust in Patriot Research.
+Thank you for your continued trust in TRB Foundation.
 
 Best regards,
-Patriot Research Team
+TRB Foundation Team
 
 ---
-Patriot Research | Official Channel
+TRB Foundation | Official Channel
 Email: contact@patriotprogramnews.com
 Telegram: https://t.me/TRBSupportAlex`;
         
@@ -878,8 +932,9 @@ Telegram: https://t.me/TRBSupportAlex`;
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             updateRecipientCount();
-            logEvent('📱 Patriot Research 2026 System Ready');
+            logEvent('📱 TRB Foundation 2026 System Ready');
             logEvent('📧 From: contact@patriotprogramnews.com');
+            logEvent('📎 PDF: TRB_2026_Announcement.pdf');
             logEvent('🔗 Telegram: https://t.me/TRBSupportAlex');
             
             document.getElementById('emailList').addEventListener('input', updateRecipientCount);
@@ -931,6 +986,7 @@ Telegram: https://t.me/TRBSupportAlex`;
             document.getElementById('headerFailed').textContent = '0';
             
             logEvent(`▶️ Started sending to ${emailList.length} recipients`);
+            logEvent(`📎 PDF will be attached from EmailJS`);
             updateStats();
             startTimers();
             
@@ -965,19 +1021,20 @@ Telegram: https://t.me/TRBSupportAlex`;
             const toEmail = emailList[currentIndex];
             const fromEmail = document.getElementById('fromEmail').value;
             
-            logEvent(`📧 Sending to ${toEmail}...`);
+            logEvent(`📧 Sending to ${toEmail} with PDF...`);
             
             const templateParams = {
                 from_email: fromEmail,
                 to_email: toEmail,
-                message: PATRIOT_MESSAGE
+                subject: "TRB Foundation Official Announcement 2026",
+                message: TRB_MESSAGE
             };
             
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
                 .then(function(response) {
                     sentCount++;
                     document.getElementById('headerSent').textContent = sentCount;
-                    logEvent(`✅ Sent to ${toEmail}`);
+                    logEvent(`✅ Sent to ${toEmail} (PDF attached from EmailJS)`);
                     updateStats();
                 })
                 .catch(function(error) {
