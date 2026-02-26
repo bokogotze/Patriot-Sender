@@ -48,7 +48,6 @@
             border-right: 1px solid #2a2d34;
         }
         
-        /* HEADER */
         .app-header {
             background: linear-gradient(145deg, #0f0f12, #1a1a1f);
             padding: 20px 16px;
@@ -92,13 +91,11 @@
             font-weight: 700;
         }
         
-        /* CONTENT */
         .app-content {
             padding: 16px;
             padding-bottom: 80px;
         }
         
-        /* CARDS */
         .card {
             background: #1a1d24;
             border-radius: 20px;
@@ -125,16 +122,8 @@
             color: white;
             font-size: 16px;
             font-weight: 600;
-            letter-spacing: 0.3px;
         }
         
-        .card-header span {
-            color: #c9a03d;
-            font-size: 12px;
-            margin-left: auto;
-        }
-        
-        /* FORM */
         .input-group {
             margin-bottom: 16px;
         }
@@ -144,9 +133,7 @@
             color: #8a8f99;
             font-size: 12px;
             margin-bottom: 6px;
-            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
         .input-group input,
@@ -158,7 +145,6 @@
             border-radius: 12px;
             color: white;
             font-size: 15px;
-            transition: all 0.2s;
         }
         
         .input-group input:focus,
@@ -167,18 +153,12 @@
             border-color: #c9a03d;
         }
         
-        .input-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        
         .input-group input[readonly] {
             background: #1a1d24;
             color: #c9a03d;
             border-color: #c9a03d;
         }
         
-        /* RECIPIENT COUNT */
         .recipient-count {
             display: flex;
             justify-content: space-between;
@@ -187,12 +167,6 @@
             margin-top: 8px;
         }
         
-        .recipient-count span:first-child {
-            color: #c9a03d;
-            font-weight: 600;
-        }
-        
-        /* STATS */
         .stats-row {
             display: flex;
             justify-content: space-between;
@@ -220,7 +194,6 @@
             text-transform: uppercase;
         }
         
-        /* PROGRESS */
         .progress-section {
             margin: 20px 0;
         }
@@ -247,7 +220,6 @@
             transition: width 0.3s;
         }
         
-        /* BUTTONS */
         .button-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -266,18 +238,11 @@
             justify-content: center;
             gap: 8px;
             cursor: pointer;
-            transition: all 0.2s;
-            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-start {
             background: #c9a03d;
             color: #0a0c0f;
-        }
-        
-        .btn-start:active {
-            background: #dbb14e;
-            transform: scale(0.97);
         }
         
         .btn-stop {
@@ -286,17 +251,11 @@
             border: 1px solid #ff6b6b;
         }
         
-        .btn-stop:active {
-            background: #4a3a3a;
-            transform: scale(0.97);
-        }
-        
         .btn:disabled {
             opacity: 0.5;
             pointer-events: none;
         }
         
-        /* TIMER */
         .timer-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -326,7 +285,6 @@
             font-family: monospace;
         }
         
-        /* LOG PANEL */
         .log-panel {
             background: #111316;
             border: 1px solid #2a2d34;
@@ -344,11 +302,6 @@
             border-bottom: 1px solid #2a2d34;
         }
         
-        .log-entry:last-child {
-            border-bottom: none;
-        }
-        
-        /* FOOTER */
         .app-footer {
             position: fixed;
             bottom: 0;
@@ -362,7 +315,6 @@
             color: #5a5f6b;
         }
         
-        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -395,7 +347,6 @@
         .modal-content p {
             color: white;
             margin-bottom: 20px;
-            font-size: 16px;
         }
         
         .modal-content button {
@@ -417,7 +368,6 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- HEADER -->
         <div class="app-header">
             <div class="header-left">
                 <i class="fas fa-paper-plane"></i>
@@ -426,9 +376,7 @@
             <div class="badge">v2.0</div>
         </div>
         
-        <!-- CONTENT -->
         <div class="app-content">
-            <!-- COMPOSE CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-envelope"></i>
@@ -442,16 +390,10 @@
                 
                 <div class="input-group">
                     <label>SUBJECT</label>
-                    <input type="text" id="subject" value="⚠️ 12 units left at sale price" placeholder="Enter subject">
-                </div>
-                
-                <div class="input-group">
-                    <label>MESSAGE (OPTIONAL - YOUR TEMPLATE WILL BE USED)</label>
-                    <textarea id="message" rows="3" placeholder="Optional additional text">Check out this exclusive offer!</textarea>
+                    <input type="text" id="subject" value="⚠️ 12 units left at sale price">
                 </div>
             </div>
             
-            <!-- RECIPIENTS CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-users"></i>
@@ -461,7 +403,7 @@
                 
                 <div class="input-group">
                     <label>EMAIL ADDRESSES (ONE PER LINE)</label>
-                    <textarea id="recipients" rows="5" placeholder="email1@example.com&#10;email2@example.com">test@test.com</textarea>
+                    <textarea id="recipients" rows="5" placeholder="email1@example.com">test@test.com</textarea>
                 </div>
                 
                 <div class="recipient-count">
@@ -470,7 +412,6 @@
                 </div>
             </div>
             
-            <!-- STATS CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-chart-line"></i>
@@ -503,7 +444,6 @@
                 </div>
             </div>
             
-            <!-- CONTROL CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-play"></i>
@@ -531,7 +471,6 @@
                 </div>
             </div>
             
-            <!-- LOG CARD -->
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-terminal"></i>
@@ -540,19 +479,17 @@
                 
                 <div class="log-panel" id="logPanel">
                     <div class="log-entry">📱 System ready</div>
-                    <div class="log-entry">📧 EmailJS initialized</div>
-                    <div class="log-entry">🦅 contact@patriotprogramnews.com</div>
+                    <div class="log-entry">📧 Service: service_edtx9of</div>
+                    <div class="log-entry">📧 Template: template_6jxe7rp</div>
                 </div>
             </div>
         </div>
         
-        <!-- FOOTER -->
         <div class="app-footer">
             PATRIOT RESEARCH • 30s INTERVAL • MAX 45
         </div>
     </div>
     
-    <!-- ALERT MODAL -->
     <div class="modal" id="alertModal">
         <div class="modal-content">
             <i class="fas fa-info-circle"></i>
@@ -562,11 +499,9 @@
     </div>
 
     <script>
-        // ===== CONFIG =====
         const SERVICE_ID = "service_edtx9of";
         const TEMPLATE_ID = "template_6jxe7rp";
         
-        // ===== STATE =====
         let sendingActive = false;
         let currentIndex = 0;
         let emailList = [];
@@ -576,11 +511,9 @@
         let countdownInterval = null;
         let sendTimeout = null;
         
-        // ===== INIT =====
         document.addEventListener('DOMContentLoaded', function() {
             updateRecipientCount();
             logEvent('📱 System ready');
-            logEvent('📧 Service ID: ' + SERVICE_ID);
             
             document.getElementById('recipients').addEventListener('input', updateRecipientCount);
         });
@@ -600,18 +533,7 @@
             
             const fromEmail = document.getElementById('fromEmail').value;
             const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
             const recipientsText = document.getElementById('recipients').value;
-            
-            if (!fromEmail || !fromEmail.includes('@')) {
-                showAlert('Valid from email required');
-                return;
-            }
-            
-            if (!subject) {
-                showAlert('Subject is required');
-                return;
-            }
             
             emailList = recipientsText.split('\n')
                 .map(e => e.trim())
@@ -670,15 +592,13 @@
             const toEmail = emailList[currentIndex];
             const fromEmail = document.getElementById('fromEmail').value;
             const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
             
             logEvent(`📧 Sending to ${toEmail}...`);
             
             const templateParams = {
-                from_email: fromEmail,
                 to_email: toEmail,
+                from_email: fromEmail,
                 subject: subject,
-                message: message,
                 reply_to: fromEmail
             };
             
@@ -690,7 +610,7 @@
                 })
                 .catch(function(error) {
                     failedCount++;
-                    logEvent(`❌ Failed: ${toEmail} - ${error.text || 'Error'}`);
+                    logEvent(`❌ Failed: ${toEmail} - ${error.text || 'Unknown error'}`);
                     updateStats();
                 })
                 .finally(function() {
@@ -713,11 +633,6 @@
                         sendTimeout = setTimeout(() => {
                             sendNextEmail();
                         }, 30000);
-                    } else if (currentIndex >= emailList.length) {
-                        setTimeout(() => {
-                            stopSending();
-                            logEvent('✅ Complete!');
-                        }, 1000);
                     }
                 });
         }
@@ -771,14 +686,12 @@
         function showAlert(message) {
             document.getElementById('modalMessage').textContent = message;
             document.getElementById('alertModal').style.display = 'flex';
-            logEvent(`⚠️ ${message}`);
         }
         
         function closeModal() {
             document.getElementById('alertModal').style.display = 'none';
         }
         
-        // Expose functions
         window.startSending = startSending;
         window.stopSending = stopSending;
         window.closeModal = closeModal;
